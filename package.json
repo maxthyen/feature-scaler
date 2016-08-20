@@ -1,0 +1,31 @@
+{
+  "name": "feature-scaler",
+  "version": "1.0.0",
+  "description": "Normalize arbitrary lists of js objects into something you can feed to a machine learning algorithm.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js",
+    "test": "mocha tests/**/*.spec.js",
+    "test-watch": "mocha tests/**/*.spec.js -w"
+  },
+  "keywords": [
+    "neural",
+    "network",
+    "one-hot",
+    "one-of-k",
+    "encoding",
+    "machine learning",
+    "normalization"
+  ],
+  "author": "Max Thyen",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.15.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.3.1",
+    "eslint-config-google": "^0.6.0",
+    "mocha": "^3.0.2"
+  }
+}
