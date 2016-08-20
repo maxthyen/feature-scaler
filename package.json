@@ -17,6 +17,10 @@
     "machine learning",
     "normalization"
   ],
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/maxthyen/feature-scaler"
+  },
   "author": "Max Thyen",
   "license": "ISC",
   "dependencies": {

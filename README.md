@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/maxthyen/feature-scaler.svg?branch=master)](https://travis-ci.org/maxthyen/feature-scaler)
 # feature-scaler
 
 `feature-scaler` is a utility that transforms a list of arbitrary JavaScript objects into a normalized format suitable for feeding into machine learning algorithms. It can also decode encoded data back into its original format.
@@ -6,7 +7,7 @@
 
 "Why JavaScript?" is a fair question - Python's `scikit-learn` has most of the data preprocessing features you may need. I wrote this mainly because I wanted an easy way to use `convnetjs` without communicating across languages. If your data is big enough that `convnetjs` or the performance of the V8 engine in node.js is the limiting factor in your workflow, don't use JavaScript!
 
-Field types currently supported: `ints`, `floats`, `bools`, and `strings`.
+**Field types currently supported**: `ints`, `floats`, `bools`, and `strings`.
 
 Check out tests/main.spec.js for a demo of this library in action.
 
@@ -28,7 +29,7 @@ The dependent variable is `value`.
  * `opts.labelKeys` - list of keys you are predicting values for (`value`).
  * `opts.dataKeys` *optional* - list of *independent* keys (`planet`, `isGasGiant`). If not provided, defaults to all keys minus `opts.labelKeys`.
 
-Example usage:
+**Example usage**:
 ```JavaScript
 const dataKeys = ['planet', 'isGasGiant'];
 const labelKeys = ['value']
@@ -66,10 +67,9 @@ decodeRow(encodedData[0], decoders) === decode(encodedData, decoders)[0]
 
 
 ## Technical details
-A nice post on feature scaling and why it's necessary was written by Sebastian Raschka, check it out here: http://sebastianraschka.com/Articles/2014_about_feature_scaling.html
 
-The short version is this library encodes data in the following ways
-* Number fields: `(n - mean) / sttdev`
+The short version is this library encodes data in the following ways:
+* Number fields: `(n - mean) / stddev`
 * Boolean fields: `n ? 1 : 0`
 * String fields: one-hot encoding (see below).
 
@@ -80,18 +80,21 @@ Instead, we need to map these strings to a list of single-valued binary values. 
 * `mars` ==    `[0, 0, 1]`
 * `saturn` ==  `[0, 1, 0]`
 * `jupiter` == `[1, 0, 0]`
-We can feed this into an arbitrary machine learning algorithm without the possibility of it inferring an ordering to our data.
 
-
-Decent intro/motivation for one-hot encoding: https://code-factor.blogspot.com/2012/10/one-hotone-of-k-data-encoder-for.html
+We can feed this into an arbitrary machine learning algorithm without the possibility of it (incorrectly) inferring an ordering to our data.
 
 \* In our example, there is indeed an ordering to the planets! If the ordering is important, add a calculated field to the data before encoding. You could add a `numberOfPlanetFromSun` integer field to each record before encoding if the ordering of categorical data is important.
 
 ### Further Reading
-* https://github.com/karpathy/convnetjs/blob/master/demo/regression.html
+* https://github.com/karpathy/convnetjs
+* http://cs231n.stanford.edu/ - Stanford neural network intro class
+* http://sebastianraschka.com/Articles/2014_about_feature_scaling.html - general motivation for feature scaling, from Sebastian Raschka
+* https://code-factor.blogspot.com/2012/10/one-hotone-of-k-data-encoder-for.html - one-hot encoding
 
 #### Todo
 * Add support for decoding a single value (currently only decoding a whole row is supported)
 * Add support for unrolling nested objects
 * Add support for missing data
 * Currently it standardizes numeric values; perhaps add support for scaling numeric values to [0, 1].
+
+Contributions welcome! Please include unit tests, and ensure both `npm run test` and `npm run lint` pass without warning.
