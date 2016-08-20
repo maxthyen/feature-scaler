@@ -3,9 +3,16 @@
 
 `feature-scaler` is a utility that transforms a list of arbitrary JavaScript objects into a normalized format suitable for feeding into machine learning algorithms. It can also decode encoded data back into its original format.
 
-**Motivation**: I use Andrej Karpathy's excellent [convnetjs](https://github.com/karpathy/convnetjs/blob/master/demo/regression.html) library to experiment with neural networks in JavaScript and often have to preprocess my data before training a network. This utility makes it easy to encode data in a format usable by `convnetjs`.
+##### Installation
+```bash
+npm install --save feature-scaler
+```
 
-"Why JavaScript?" is a fair question - Python's `scikit-learn` has most of the data preprocessing features you may need. I wrote this mainly because I wanted an easy way to use `convnetjs` without communicating across languages. If your data is big enough that `convnetjs` or the performance of the V8 engine in node.js is the limiting factor in your workflow, don't use JavaScript!
+##### Motivation
+I use Andrej Karpathy's excellent [convnetjs](https://github.com/karpathy/convnetjs/blob/master/demo/regression.html) library to experiment with neural networks in JavaScript and often have to preprocess my data before training a network. This utility makes it easy to encode data in a format usable by `convnetjs`.
+
+##### Why JavaScript?
+is a fair question - Python's `scikit-learn` has most of the data preprocessing features you may need. I wrote this mainly because I wanted an easy way to use `convnetjs` without communicating across languages. If your data is big enough that `convnetjs` or the performance of the V8 engine in node.js is the limiting factor in your workflow, don't use JavaScript!
 
 **Field types currently supported**: `ints`, `floats`, `bools`, and `strings`.
 
