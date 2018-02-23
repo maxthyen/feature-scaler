@@ -103,7 +103,7 @@ function standardizeField(key, data, decoders) {
       const mean = _.mean(values);
       const std = calculateStd(values, mean);
       decoders.push({ type, mean, std, key });
-      return _.map(values, value => (value - mean) / std);
+      return _.map(values, value => ((value - mean) / std) || 0); // Return 0 if the std = 0 and the result is NaN
     }
 
     case 'boolean': {
@@ -143,4 +143,3 @@ function buildOneHot(lst) {
     encode: value => _.range(0, i).map(pos => lookup[value] === pos ? 1 : 0)
   };
 }
-
